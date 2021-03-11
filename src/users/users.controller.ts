@@ -8,7 +8,11 @@ export class UsersController {
 
   @Get()
   findAll(): Promise<UserDto[]> {
-    return this.prismaService.user.findMany();
+    return this.prismaService.user.findMany({
+      include: {
+        country: true,
+      },
+    });
   }
 
   @Post()
